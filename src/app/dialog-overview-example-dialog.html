@@ -1,0 +1,33 @@
+<div class="cancel-order" fxFlex="100">
+  <h1 mat-dialog-title>Amend Order</h1>
+
+  <!-- Combobox -->
+  <div mat-dialog-content>
+    <!-- <p>Amendment Reason</p> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Cancellation Reason</mat-label>
+      <mat-select formControlName="Reason" required>
+        <mat-option *ngFor="let next of this.getReasons()" [value]="next">
+          {{next}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Notes for amend -->
+  <div mat-dialog-content>
+    <!-- <p>Notes</p> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter notes</mat-label>
+      <input matInput [(ngModel)]="data.animal" />
+    </mat-form-field>
+  </div>
+
+  <!-- Buttons at the bottom -->
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>
+      Submit
+    </button>
+  </div>
+</div>

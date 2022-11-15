@@ -1,0 +1,13 @@
+<!-- 
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>Reason for amendment</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </li> -->
+
+<li>
+  <button mat-raised-button (click)="openDialog()">Amend</button>
+</li>
+
+<li *ngIf="animal">Amendment Reason: <i>{{animal}}</i></li>
