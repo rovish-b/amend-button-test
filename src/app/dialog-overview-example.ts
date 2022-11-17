@@ -7,7 +7,8 @@ import {
 } from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
+  note: string;
+  Reason: string;
 }
 
 const Reasons: string[] = [
@@ -27,19 +28,22 @@ const Reasons: string[] = [
   templateUrl: 'dialog-overview-example.html',
 })
 export class DialogOverviewExample {
-  animal: string;
+  note: string;
+  Reason: string;
 
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-      data: { animal: this.animal },
+      data: { note: this.note, Reason: this.Reason},
+    
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.note = result;
+      this.Reason = result;
     });
   }
 }
@@ -50,7 +54,8 @@ export class DialogOverviewExample {
 })
 export class DialogOverviewExampleDialog {
   OrderForm = new FormGroup({
-    Reason: new FormControl('', [Validators.required]),
+    Reason: new FormControl('', [Validators.required])
+    
   });
 
   constructor(
@@ -60,6 +65,12 @@ export class DialogOverviewExampleDialog {
 
   getReasons(): string[] {
     return Reasons;
+  }
+
+  onSubmitClick(): void{
+    console.log(this.data.note);
+    this.dialogRef.close();
+    // this.dialogRef.close((note: this.data.note, Reason: this.data.Reason));
   }
 
   onNoClick(): void {
